@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength & Dictionary Upload</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+    textarea {
+      resize: none;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="flex-container">
+            <!-- Upload Dictionary Section -->
+            <div class="upload-container">
+                <h2>Upload Your Dictionary</h2>
+                <p>Enhance your password security checks by uploading a custom dictionary.</p>
+                
+                <!-- Option Buttons -->
+                <div class="dictionary-options">
+                    <button id="useDefaultButton" class="dictionary-option selected">Use Default Dictionary</button>
+                    <button id="uploadCustomButton" class="dictionary-option">Upload Your Dictionary</button>
+                </div>
+            
+                <!-- File Upload Section -->
+                <div id="customDictionarySection" class="hidden">
+                    <div id="dragDropArea" class="drag-drop-area">
+                        <p>Drag & Drop your file here or</p>
+                        <label for="dictionaryFile" class="custom-file-label">Choose File</label>
+                        <input type="file" id="dictionaryFile" accept=".txt" style="display: none;" />
+                        <p id="fileNameDisplay">No file selected</p>
+                    </div>
+                    <button id="uploadButton" class="dictionary-option">Upload File</button>
+                    <div id="progressBarContainer">
+                        <div class="file-progress-bar" id="fileProgressBar"></div>
+                    </div>
+                </div>
+
+            
+                <h3>Brute Force Character Set</h3>
+                <p>Select the character sets to include in the brute force calculation:</p>
+                <div class="checkbox-container">
+                    <label><input type="checkbox" id="numbers" checked /> Numbers</label><br>
+                    <label><input type="checkbox" id="lowercase_letters" checked /> Lowercase Letters</label><br>
+                    <label><input type="checkbox" id="uppercase_letters" checked /> Uppercase Letters</label><br>
+                    <label><input type="checkbox" id="special_characters" checked /> Special Characters</label><br>
+                    <label><input type="checkbox" id="ascii_extended" /> ASCII Extended</label>
+                </div>
+            </div>
+            
+
+            <!-- Password Strength Section -->
+            <div class="password-container">
+                <h1>PwnPass</h1>
+                <p>Estimate how secure your password is against brute force and dictionary attacks.</p>
+            
+                <div class="input-container">
+                    <textarea id="passwords" name="passwords" rows="5" cols="35" 
+                    placeholder="Enter your password(s) like this:
+pass1
+pass2
+..."></textarea>
+                    <p id="warningMessage" class="warning-message"></p>
+                </div>
+                <!-- CPU Selection -->
+                <div class="cpu-selection">
+                    <label for="cpuType">Select CPU:</label>
+                    <select id="cpuType">
+                    </select>
+                </div>
+                   <!-- Advanced Option -->
+             
+             <div id="algorithms-container">
+             </div>
+            
+                
+            
+                <!-- Submit Button -->
+                <button id="submitPassword" class="submit-button" disabled>Submit Password</button>
+            </div>            
+
+            <!-- Presets Section -->
+            <div class="presets-container">
+                
+        <p>Dictionary Attack</p>
+                    <canvas id="strengthChartdict"></canvas>
+             
+                    <p>Brute Force</p>
+                    <canvas id="strengthChartbrut" ></canvas>
+        
+               
+            </div>
+        </div>
+        <p id="cpu_name_p"></p>
+        <div id="tables-container" class="table"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

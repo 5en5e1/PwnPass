@@ -1,0 +1,462 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto; /* Add vertical margin to create breathing space */
+}
+
+/* Flex Container for Horizontal Layout */
+.flex-container {
+    display: flex;
+    justify-content: space-around; /* Space out rectangles */
+    align-items: flex-start; /* Align to the top */
+    gap: 20px; /* Space between rectangles */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Section Styles */
+.upload-container, .password-container, .presets-container {
+    background: rgba(240, 240, 240, 1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.6s ease-in-out;
+    width: 100%;
+    max-width: 300px; /* Restrict width for horizontal layout */
+    border: 1px solid #ddd; /* Add borders for separation */
+}
+
+/* Preset Options */
+.preset-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.preset-option img {
+    width: 20px; /* Appropriately sized logo */
+    height: 20px;
+}
+
+.preset-option span {
+    font-size: 0.9rem; /* Balanced font size */
+    font-weight: bold;
+    color: #333;
+}
+
+.preset-option:hover {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+}
+
+.preset-option:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* CPU Selection */
+.cpu-selection {
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.cpu-selection label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.cpu-selection select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 200px;
+    display: inline-block;
+}
+
+/* Results Section */
+.results canvas {
+    margin: 20px 0;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+/* Responsive Layout for Mobile */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column; /* Stack rectangles vertically */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .upload-container, .password-container, .presets-container {
+        max-width: 90%; /* Use most of the screen width */
+        margin: 0 auto; /* Center horizontally */
+    }
+
+    .preset-option img {
+        width: 18px; /* Slightly smaller icons for mobile */
+        height: 18px;
+    }
+
+    .preset-option span {
+        font-size: 0.85rem; /* Adjust font size for mobile */
+    }
+
+    .results canvas {
+        max-width: 200px; /* Smaller chart size for mobile */
+        max-height: 200px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+.advanced-settings.hidden {
+    display: none; /* Hide when class is added */
+    opacity: 0;
+    transform: scaleY(0); /* Scale back to 0 height */
+    animation: none; /* Disable animation when hidden */
+}
+
+.advanced-settings.show {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1); /* Expand to full height */
+    animation: slideDown 0.3s ease forwards; /* Smooth slide down */
+}
+
+/* Keyframes for the slideDown animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+/* Submit Button Styles */
+.submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #6a11cb;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed; /* Default disabled state */
+    opacity: 0.6; /* Disabled button is semi-transparent */
+    transition: opacity 0.3s ease, cursor 0.3s ease;
+}
+
+.submit-button:enabled {
+    cursor: pointer; /* Change cursor to pointer when enabled */
+    opacity: 1; /* Fully opaque when enabled */
+    background-color: #2575fc; /* Slightly different color */
+}
+
+.submit-button:hover:enabled {
+    background-color: #1a5bd7; /* Darker blue on hover when enabled */
+}
+
+/* Dictionary Option Buttons */
+.dictionary-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.dictionary-option {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.dictionary-option.selected {
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+}
+
+.dictionary-option:hover {
+    background-color: #2575fc;
+    color: white;
+}
+
+/* Sliding Section */
+#customDictionarySection {
+    display: none; /* Initially hidden */
+    opacity: 0;
+    transform: scaleY(0); /* Collapsed */
+    transform-origin: top;
+    animation: slideDown 0.3s ease forwards;
+}
+
+#customDictionarySection.show {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1); /* Expanded */
+}
+
+#customDictionarySection.hidden {
+    display: none;
+    opacity: 0;
+    transform: scaleY(0);
+    animation: none;
+}
+
+/* Keyframes for slide-down effect */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+/* Drag-and-Drop Area */
+.drag-drop-area {
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.drag-drop-area:hover {
+    background-color: #eaeaea;
+    border-color: #6a11cb;
+}
+
+.drag-drop-area.dragging {
+    background-color: #d6e6ff;
+    border-color: #2575fc;
+}
+
+.custom-file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #6a11cb;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+.custom-file-label:hover {
+    background-color: #2575fc;
+}
+
+#fileNameDisplay {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Upload Button */
+button.dictionary-option {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #6a11cb;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.dictionary-option:hover {
+    background-color: #2575fc;
+}
+/* Advanced Settings */
+.advanced-settings {
+    display: none; /* Initially hidden */
+    opacity: 0;
+    transform: scaleY(0); /* Scale to 0 height initially */
+    transform-origin: top; /* Animate dropdown from the top */
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+    animation: slideDown 0.3s ease forwards; /* Slide down animation */
+    width: 100%;
+    max-width: 300px;
+}
+
+.advanced-settings.hidden {
+    display: none; /* Hide when class is added */
+    opacity: 0;
+    transform: scaleY(0); /* Scale back to 0 height */
+    animation: none; /* Disable animation when hidden */
+}
+
+.advanced-settings.show {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1); /* Expand to full height */
+    animation: slideDown 0.3s ease forwards; /* Smooth slide down */
+}
+
+/* Keyframes for the slideDown animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+canvas#strengthChart {
+  
+    width: 100%;
+    margin: 10px auto;
+    
+}
+
+#algorithms-container {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2); /* Make checkboxes larger */
+}
+
+label {
+    margin-right: 20px;
+}
+/*hasdafoeofemfwemfweoifmom*/
+/* General Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
+
+    /* Zebra striping embedded */
+    --zebra-background: #f6f6f6;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--zebra-background);
+}
+
+/* Table Header Styles */
+table th {
+    background-color: #007BFF;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Table Row Styles */
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Highlight on Hover */
+table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Zebra Striping */
+table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+/* Table Title Styles */
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #333;
+    margin: 20px 0 10px 0;
+}
+
+
